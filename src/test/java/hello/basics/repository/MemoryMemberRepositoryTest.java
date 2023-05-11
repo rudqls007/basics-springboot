@@ -1,4 +1,4 @@
-package repository;
+package hello.basics.repository;
 
 import hello.basics.domain.Member;
 import hello.basics.repository.MemberRepository;
