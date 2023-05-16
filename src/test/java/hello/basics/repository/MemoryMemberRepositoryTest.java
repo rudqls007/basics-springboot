@@ -11,16 +11,14 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-class MemoryMemberRepositoryTest {
-
+public class MemoryMemberRepositoryTest {
+    // 테스트는 순서없이 시작이 된다.
     MemoryMemberRepository repository = new MemoryMemberRepository();
 
     @AfterEach
-    public void afterEach() {
+    public void afterEach(){
         repository.clearStore();
     }
-
-
     @Test
     public void save(){
         Member member = new Member();
@@ -28,20 +26,18 @@ class MemoryMemberRepositoryTest {
 
         repository.save(member);
 
-        Member result = repository.findByid(member.getId()).get();
+        Member result = repository.findById(member.getId()).get();
         assertThat(member).isEqualTo(result);
-        //Assertions.assertEquals(result, member);
-        //System.out.println("result = " + (result == member));
     }
 
     @Test
-    public void findByName(){
+    public void findByName() {
         Member member1 = new Member();
         member1.setName("spring1");
         repository.save(member1);
 
         Member member2 = new Member();
-        member2.setName("spirng2");
+        member2.setName("spring2");
         repository.save(member2);
 
         Member result = repository.findByName("spring1").get();
@@ -50,9 +46,9 @@ class MemoryMemberRepositoryTest {
     }
 
     @Test
-    public void findAll() {
+    public void findAll(){
         Member member1 = new Member();
-        member1.setName("spring1");
+        member1.setName("spirng1");
         repository.save(member1);
 
         Member member2 = new Member();

@@ -3,32 +3,32 @@ package hello.basics.service;
 import hello.basics.domain.Member;
 import hello.basics.repository.MemberRepository;
 import hello.basics.repository.MemoryMemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class MemberService {
-    
+
+
     private final MemberRepository memberRepository;
 
-    // 의존성 주입 (DI)
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
+
     /**
-    * 회원가입
-    * */
-    public Long join(Member member){
-        //같은 이름이 있는 중복 회원 X
-        // null이 있으면 Optional로 함.
-        validateDuplicateMember(member); // 중복 회원 검증
+     * 회원가입
+     */
+    public Long join(Member member) {
+
+        validateDuplicateMember(member); //중복 회원 검증
         memberRepository.save(member);
         return member.getId();
     }
-
     private void validateDuplicateMember(Member member) {
         memberRepository.findByName(member.getName())
                 .ifPresent(m -> {
@@ -37,12 +37,11 @@ public class MemberService {
     }
     /**
      * 전체 회원 조회
-     * */
-    public List<Member> findMembers(){
-       return memberRepository.findAll();
+     */
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
     }
-
-    public Optional<Member>findOne(Long memberId){
-        return memberRepository.findByid(memberId);
+    public Optional<Member> findOne(Long memberId) {
+        return memberRepository.findById(memberId);
     }
 }
