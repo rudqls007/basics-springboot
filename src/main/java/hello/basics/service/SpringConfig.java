@@ -32,6 +32,8 @@ public class SpringConfig {
         return new MemberService(memberRepository);
     }
 
+
+
 //    @Bean
 //    public MemberRepository memberRepository() {
 //
@@ -41,4 +43,6 @@ public class SpringConfig {
 ////        return  new JpaMemberRepository(em);
 //
 //    }
+
+
 }
